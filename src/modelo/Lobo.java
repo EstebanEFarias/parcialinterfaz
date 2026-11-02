@@ -1,9 +1,8 @@
-package ecosistema;
+package modelo;
 
 import java.util.Random;
 
 public class Lobo extends Animal implements Peligroso {
-
     private static final double ENERGIA_GANADA_CAZA = 30.0;
     private static final Random RANDOM = new Random();
 
@@ -23,21 +22,22 @@ public class Lobo extends Animal implements Peligroso {
     public void comer(Ecosistema eco) {
         Conejo presa = eco.elegirConejoAlAzar();
         if (presa == null) {
-            System.out.println("Lobo '" + getNombre() + "' no encontró presas.");
+            eco.registrarEvento("Lobo '" + getNombre() + "' no encontró presas.");
             return;
         }
 
         double probabilidadExito = calcularProbabilidadCaza(eco.getClimaActual());
-        eco.contarEvento();
 
         if (RANDOM.nextDouble() <= probabilidadExito) {
             presa.morir();
+            eco.sumarMuerteConejo();
             setEnergia(getEnergia() + ENERGIA_GANADA_CAZA);
             exitosCaza++;
-            System.out.println("Lobo '" + getNombre() + "' cazó a Conejo '" + presa.getNombre()
-                    + "' (+" + (int) ENERGIA_GANADA_CAZA + " energia) [cacerias: " + exitosCaza + "]");
+            eco.registrarEvento("Lobo '" + getNombre() + "' cazó a Conejo '" + presa.getNombre()
+                    + "' (+" + (int) ENERGIA_GANADA_CAZA + " energía)");
         } else {
-            System.out.println("Lobo '" + getNombre() + "' falló la caza.");
+            eco.registrarEvento("Lobo '" + getNombre() + "' falló la caza de Conejo '"
+                    + presa.getNombre() + "'");
         }
     }
 
@@ -53,13 +53,16 @@ public class Lobo extends Animal implements Peligroso {
     @Override
     public void morir() {
         setViva(false);
-        System.out.println("Lobo '" + getNombre() + "' murió de hambre.");
     }
 
     @Override
-    public void mostrarEstado() {
-        System.out.println("Lobo '" + getNombre() + "' | energia: " + (int) getEnergia()
-                + " | cacerias exitosas: " + exitosCaza);
+    public String getTipo() {
+        return "Lobo";
+    }
+
+    @Override
+    public String describirEstado() {
+        return "Cacerías: " + exitosCaza;
     }
 
     @Override
@@ -69,5 +72,12 @@ public class Lobo extends Animal implements Peligroso {
 
     public int getExitosCaza() {
         return exitosCaza;
+    }
+
+    public void setExitosCaza(int exitosCaza) {
+        if (exitosCaza < 0) {
+            throw new IllegalArgumentException("Las cacerías no pueden ser negativas.");
+        }
+        this.exitosCaza = exitosCaza;
     }
 }

@@ -1,7 +1,6 @@
-package ecosistema;
+package modelo;
 
 public class PlantaVenenosa extends Planta implements Peligroso {
-
     private static final double DANIO_AL_SER_COMIDA = 30.0;
 
     public PlantaVenenosa(String nombre, double energia, int tamanio) {
@@ -12,6 +11,16 @@ public class PlantaVenenosa extends Planta implements Peligroso {
     public double serComida() {
         super.serComida();
         return -DANIO_AL_SER_COMIDA;
+    }
+
+    @Override
+    public String getTipo() {
+        return "Planta venenosa";
+    }
+
+    @Override
+    public String describirEstado() {
+        return super.describirEstado() + " - peligro " + getNivelPeligro();
     }
 
     @Override

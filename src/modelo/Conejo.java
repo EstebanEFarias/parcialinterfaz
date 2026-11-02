@@ -1,15 +1,13 @@
-package ecosistema;
+package modelo;
 
 import java.util.Random;
 
 public class Conejo extends Animal implements Reproducible {
-
     private static final double ENERGIA_MINIMA_REPRODUCCION = 60.0;
     private static final double ENERGIA_PERDIDA_SIN_COMIDA = 15.0;
     private static final double ENERGIA_PELIGRO = 20.0;
     private static final double COSTO_ENERGIA_CRIA = 20.0;
     private static final Random RANDOM = new Random();
-    private static int contador = 0;
 
     public Conejo(String nombre, double energia) {
         super(nombre, energia, 8, 2.5);
@@ -28,22 +26,21 @@ public class Conejo extends Animal implements Reproducible {
         Planta planta = eco.buscarPlantaViva();
         if (planta == null) {
             setEnergia(getEnergia() - ENERGIA_PERDIDA_SIN_COMIDA);
-            eco.contarEvento();
-            System.out.println("Conejo '" + getNombre() + "' no encontró comida (-"
-                    + (int) ENERGIA_PERDIDA_SIN_COMIDA + " energia)" + etiquetaPeligro());
+            eco.registrarEvento("Conejo '" + getNombre() + "' no encontró comida (-"
+                    + (int) ENERGIA_PERDIDA_SIN_COMIDA + " energía)");
             return;
         }
 
         double valorNutritivo = planta.serComida();
+        eco.sumarMuertePlanta();
         setEnergia(getEnergia() + valorNutritivo);
-        eco.contarEvento();
 
         if (valorNutritivo < 0) {
-            System.out.println("Conejo '" + getNombre() + "' comió '" + planta.getNombre()
-                    + "' y resultó ser venenosa (" + (int) valorNutritivo + " energia)" + etiquetaPeligro());
+            eco.registrarEvento("Conejo '" + getNombre() + "' comió '" + planta.getNombre()
+                    + "' y era VENENOSA (" + (int) valorNutritivo + " energía)");
         } else {
-            System.out.println("Conejo '" + getNombre() + "' comió '" + planta.getNombre()
-                    + "' (+" + (int) valorNutritivo + " energia)");
+            eco.registrarEvento("Conejo '" + getNombre() + "' comió '" + planta.getNombre()
+                    + "' (+" + (int) valorNutritivo + " energía)");
         }
     }
 
@@ -57,31 +54,26 @@ public class Conejo extends Animal implements Reproducible {
         if (eco.contarConejosVivos() < 2) {
             return;
         }
-        contador++;
-        double energiaCria = 30 + RANDOM.nextInt(15);
-        Conejo cria = new Conejo("Cria-" + contador, energiaCria);
-
+        Conejo cria = eco.crearConejo(30 + RANDOM.nextInt(15));
         eco.registrarNuevoConejo(cria);
-        eco.contarEvento();
         setEnergia(getEnergia() - COSTO_ENERGIA_CRIA);
 
-        System.out.println("Conejo '" + getNombre() + "' tuvo una cría: '" + cria.getNombre() + "'");
+        eco.registrarEvento("Conejo '" + getNombre() + "' tuvo una cría: '" + cria.getNombre() + "'");
     }
 
     @Override
     public void morir() {
         setViva(false);
-        System.out.println("Conejo '" + getNombre() + "' murió de inanición.");
     }
 
     @Override
-    public void mostrarEstado() {
-        System.out.println("Conejo '" + getNombre() + "' | energia: " + (int) getEnergia()
-                + etiquetaPeligro());
+    public String getTipo() {
+        return "Conejo";
     }
 
-    private String etiquetaPeligro() {
-        return getEnergia() < ENERGIA_PELIGRO ? " [PELIGRO: energia=" + (int) getEnergia() + "]" : "";
+    @Override
+    public String describirEstado() {
+        return getEnergia() < ENERGIA_PELIGRO ? "En peligro (poca energía)" : "Bien";
     }
 
     public void aplicarEfectoClima(Clima clima) {

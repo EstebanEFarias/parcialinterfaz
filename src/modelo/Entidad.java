@@ -1,4 +1,4 @@
-package ecosistema;
+package modelo;
 
 public abstract class Entidad {
 
@@ -18,7 +18,9 @@ public abstract class Entidad {
 
     public abstract void actuar(Ecosistema eco);
 
-    public abstract void mostrarEstado();
+    public abstract String getTipo();
+
+    public abstract String describirEstado();
 
     public void envejecer() {
         edad++;

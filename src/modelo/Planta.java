@@ -1,14 +1,12 @@
-package ecosistema;
+package modelo;
 
 import java.util.Random;
 
 public class Planta extends Entidad implements Reproducible {
-
     private static final double ENERGIA_MINIMA_REPRODUCCION = 25.0;
     private static final double PROBABILIDAD_BASE_REPRODUCCION = 0.35;
     private static final double COSTO_ENERGIA_REPRODUCCION = 12.0;
     private static final Random RANDOM = new Random();
-    private static int contador = 0;
 
     private int tamanio;
 
@@ -23,9 +21,13 @@ public class Planta extends Entidad implements Reproducible {
     }
 
     @Override
-    public void mostrarEstado() {
-        System.out.println("Planta '" + getNombre() + "' | tamaño: " + tamanio
-                + " | energia: " + (int) getEnergia());
+    public String getTipo() {
+        return "Planta";
+    }
+
+    @Override
+    public String describirEstado() {
+        return "Tamaño " + tamanio;
     }
 
     @Override
@@ -44,17 +46,12 @@ public class Planta extends Entidad implements Reproducible {
             return;
         }
 
-        contador++;
-        int tamanioNueva = 1 + RANDOM.nextInt(5);
-        double energiaNueva = 20 + RANDOM.nextInt(20);
-        Planta nueva = new Planta("Helecho-" + contador, energiaNueva, tamanioNueva);
-
+        Planta nueva = eco.crearPlanta(20 + RANDOM.nextInt(20));
         eco.registrarNuevaPlanta(nueva);
-        eco.contarEvento();
         setEnergia(getEnergia() - COSTO_ENERGIA_REPRODUCCION);
 
-        System.out.println("Planta '" + getNombre() + "' se reprodujo -> nueva planta '"
-                + nueva.getNombre() + "' (energia: " + (int) energiaNueva + ")");
+        eco.registrarEvento("Nació " + nueva.getTipo().toLowerCase() + " '" + nueva.getNombre()
+                + "' (de '" + getNombre() + "')");
     }
 
     public double serComida() {
