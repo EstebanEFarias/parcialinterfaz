@@ -68,6 +68,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnVerReporte = new javax.swing.JButton();
         btnAvanzar = new javax.swing.JButton();
         pnlReporte = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        pnlTablasReporte = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblResumen = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblPorTipo = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblHistorial = new javax.swing.JTable();
+        pnlBotonesReporte = new javax.swing.JPanel();
+        btnVolver = new javax.swing.JButton();
+        btnNuevaSimulacion = new javax.swing.JButton();
         lblEstado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -214,16 +225,107 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlContenedor.add(pnlSimulacion, "simulacion");
 
-        javax.swing.GroupLayout pnlReporteLayout = new javax.swing.GroupLayout(pnlReporte);
-        pnlReporte.setLayout(pnlReporteLayout);
-        pnlReporteLayout.setHorizontalGroup(
-            pnlReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 814, Short.MAX_VALUE)
-        );
-        pnlReporteLayout.setVerticalGroup(
-            pnlReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
-        );
+        pnlReporte.setLayout(new java.awt.BorderLayout());
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Reporte final de la simulación");
+        pnlReporte.add(jLabel10, java.awt.BorderLayout.NORTH);
+
+        pnlTablasReporte.setLayout(new java.awt.GridLayout(3, 1, 0, 10));
+
+        tblResumen.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Concepto", "Valor"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblResumen);
+
+        pnlTablasReporte.add(jScrollPane3);
+
+        tblPorTipo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Tipo", "Nacimientos", "Muertes", "Maxima Poblacion", "Minima Poblacion"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tblPorTipo);
+
+        pnlTablasReporte.add(jScrollPane4);
+
+        tblHistorial.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Turno", "Plantas", "Conejos", "Lobos"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tblHistorial);
+
+        pnlTablasReporte.add(jScrollPane5);
+
+        pnlReporte.add(pnlTablasReporte, java.awt.BorderLayout.CENTER);
+
+        pnlBotonesReporte.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+
+        btnVolver.setText("Volver a la simulación");
+        pnlBotonesReporte.add(btnVolver);
+
+        btnNuevaSimulacion.setText("Nueva simulación");
+        pnlBotonesReporte.add(btnNuevaSimulacion);
+
+        pnlReporte.add(pnlBotonesReporte, java.awt.BorderLayout.SOUTH);
 
         pnlContenedor.add(pnlReporte, "reporte");
 
@@ -265,11 +367,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAvanzar;
     private javax.swing.JButton btnCambiarClima;
     private javax.swing.JButton btnIniciar;
+    private javax.swing.JButton btnNuevaSimulacion;
     private javax.swing.JButton btnVerReporte;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cboClimaInicial;
     private javax.swing.JComboBox<String> cboClimaIntervencion;
     private javax.swing.JComboBox<String> cboTipoEntidad;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -280,6 +385,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel lblClima;
     private javax.swing.JLabel lblConejos;
     private javax.swing.JLabel lblEstado;
@@ -289,6 +397,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblTurno;
     private javax.swing.JList<String> lstEventos;
     private javax.swing.JPanel pnlAcciones;
+    private javax.swing.JPanel pnlBotonesReporte;
     private javax.swing.JPanel pnlBotonesSim;
     private javax.swing.JPanel pnlConfig;
     private javax.swing.JPanel pnlContadores;
@@ -297,7 +406,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel pnlIntervencion;
     private javax.swing.JPanel pnlReporte;
     private javax.swing.JPanel pnlSimulacion;
+    private javax.swing.JPanel pnlTablasReporte;
     private javax.swing.JTable tblEntidades;
+    private javax.swing.JTable tblHistorial;
+    private javax.swing.JTable tblPorTipo;
+    private javax.swing.JTable tblResumen;
     private javax.swing.JTextField txtConejos;
     private javax.swing.JTextField txtLobos;
     private javax.swing.JTextField txtPlantas;
