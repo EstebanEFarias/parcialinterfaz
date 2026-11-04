@@ -4,19 +4,146 @@
  */
 package vista;
 
-/**
- *
- * @author Esteban
- */
-public class VentanaPrincipal extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
+import java.awt.CardLayout;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-    /**
-     * Creates new form VentanaPrincipal
-     */
+public class VentanaPrincipal extends javax.swing.JFrame {
+
+    private DefaultTableModel modeloEntidades;
+    private DefaultTableModel modeloResumen;
+    private DefaultTableModel modeloPorTipo;
+    private DefaultTableModel modeloHistorial;
+    private DefaultListModel<String> modeloEventos;
+
     public VentanaPrincipal() {
         initComponents();
+        modeloEntidades = (DefaultTableModel) tblEntidades.getModel();
+        modeloResumen = (DefaultTableModel) tblResumen.getModel();
+        modeloPorTipo = (DefaultTableModel) tblPorTipo.getModel();
+        modeloHistorial = (DefaultTableModel) tblHistorial.getModel();
+        modeloEntidades.setRowCount(0);
+        modeloResumen.setRowCount(0);
+        modeloPorTipo.setRowCount(0);
+        modeloHistorial.setRowCount(0);
+
+        modeloEventos = new DefaultListModel<>();
+        lstEventos.setModel(modeloEventos);
+    }
+
+    public void mostrarPantalla(String nombreCard) {
+        CardLayout cl = (CardLayout) pnlContenedor.getLayout();
+        cl.show(pnlContenedor, nombreCard);
+    }
+
+    public void cargarClimas(String[] climas) {
+        cboClimaInicial.removeAllItems();
+        cboClimaIntervencion.removeAllItems();
+        for (String clima : climas) {
+            cboClimaInicial.addItem(clima);
+            cboClimaIntervencion.addItem(clima);
+        }
+    }
+
+    public void actualizarContadores(int turno, int turnosTotales, String clima,
+            int plantas, int conejos, int lobos) {
+        lblTurno.setText("Turno: " + turno + " / " + turnosTotales);
+        lblClima.setText("Clima: " + clima);
+        lblPlantas.setText("Plantas: " + plantas);
+        lblConejos.setText("Conejos: " + conejos);
+        lblLobos.setText("Lobos: " + lobos);
+    }
+
+    public void actualizarTabla(List<Object[]> filas) {
+        modeloEntidades.setRowCount(0);
+        for (Object[] fila : filas) {
+            modeloEntidades.addRow(fila);
+        }
+    }
+
+    public void actualizarEventos(List<String> eventos) {
+        modeloEventos.clear();
+        if (eventos.isEmpty()) {
+            modeloEventos.addElement("Todavía no hay eventos.");
+        }
+        for (String evento : eventos) {
+            modeloEventos.addElement(evento);
+        }
+    }
+
+    public void habilitarIntervencion(boolean habilitado, String texto) {
+        cboClimaIntervencion.setEnabled(habilitado);
+        btnCambiarClima.setEnabled(habilitado);
+        cboTipoEntidad.setEnabled(habilitado);
+        btnAgregarEntidad.setEnabled(habilitado);
+        lblIntervencion.setText(texto);
+    }
+
+    public void habilitarAvanzar(boolean habilitado) {
+        btnAvanzar.setEnabled(habilitado);
+    }
+
+    public void habilitarVerReporte(boolean habilitado) {
+        btnVerReporte.setEnabled(habilitado);
+    }
+
+    public void mostrarReporte(List<Object[]> resumen, List<Object[]> porTipo, List<Object[]> historial) {
+        modeloResumen.setRowCount(0);
+        for (Object[] fila : resumen) {
+            modeloResumen.addRow(fila);
+        }
+        modeloPorTipo.setRowCount(0);
+        for (Object[] fila : porTipo) {
+            modeloPorTipo.addRow(fila);
+        }
+        modeloHistorial.setRowCount(0);
+        for (Object[] fila : historial) {
+            modeloHistorial.addRow(fila);
+        }
+    }
+
+    public void limpiarFormulario() {
+        txtPlantas.setText("");
+        txtConejos.setText("");
+        txtLobos.setText("");
+        txtTurnos.setText("");
+        if (cboClimaInicial.getItemCount() > 0) {
+            cboClimaInicial.setSelectedIndex(0);
+        }
+    }
+
+    public void limpiarSimulacion() {
+        lblTurno.setText("Turno: -");
+        lblClima.setText("Clima: -");
+        lblPlantas.setText("Plantas: -");
+        lblConejos.setText("Conejos: -");
+        lblLobos.setText("Lobos: -");
+        modeloEntidades.setRowCount(0);
+        modeloEventos.clear();
+        modeloEventos.addElement("Todavía no hay una simulación en curso.");
+        modeloResumen.setRowCount(0);
+        modeloPorTipo.setRowCount(0);
+        modeloHistorial.setRowCount(0);
+    }
+
+    public void mostrarMensaje(String texto) {
+        lblEstado.setText(texto);
+    }
+
+    public void mostrarError(String texto) {
+        JOptionPane.showMessageDialog(this, texto, "Atención", JOptionPane.WARNING_MESSAGE);
+    }
+
+    public void mostrarInformacion(String texto) {
+        JOptionPane.showMessageDialog(this, texto, "Información", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public boolean confirmar(String texto) {
+        int respuesta = JOptionPane.showConfirmDialog(this, texto, "Confirmar",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        return respuesta == JOptionPane.YES_OPTION;
     }
 
     /**
@@ -80,6 +207,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         btnNuevaSimulacion = new javax.swing.JButton();
         lblEstado = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuSimulacion = new javax.swing.JMenu();
+        itemNueva = new javax.swing.JMenuItem();
+        itemSalir = new javax.swing.JMenuItem();
+        menuReportes = new javax.swing.JMenu();
+        itemVerReporte = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -334,33 +467,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblEstado.setText("Listo.");
         getContentPane().add(lblEstado, java.awt.BorderLayout.SOUTH);
 
+        menuSimulacion.setText("Simulación");
+
+        itemNueva.setText("Nueva simulación");
+        menuSimulacion.add(itemNueva);
+
+        itemSalir.setText("Salir");
+        menuSimulacion.add(itemSalir);
+
+        jMenuBar1.add(menuSimulacion);
+
+        menuReportes.setText("Reportes");
+
+        itemVerReporte.setText("Ver reporte final");
+        menuReportes.add(itemVerReporte);
+
+        jMenuBar1.add(menuReportes);
+
+        setJMenuBar(jMenuBar1);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VentanaPrincipal().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarEntidad;
@@ -373,6 +504,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboClimaInicial;
     private javax.swing.JComboBox<String> cboClimaIntervencion;
     private javax.swing.JComboBox<String> cboTipoEntidad;
+    private javax.swing.JMenuItem itemNueva;
+    private javax.swing.JMenuItem itemSalir;
+    private javax.swing.JMenuItem itemVerReporte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -383,6 +517,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -396,6 +531,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblPlantas;
     private javax.swing.JLabel lblTurno;
     private javax.swing.JList<String> lstEventos;
+    private javax.swing.JMenu menuReportes;
+    private javax.swing.JMenu menuSimulacion;
     private javax.swing.JPanel pnlAcciones;
     private javax.swing.JPanel pnlBotonesReporte;
     private javax.swing.JPanel pnlBotonesSim;
