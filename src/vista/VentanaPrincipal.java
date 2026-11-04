@@ -4,6 +4,7 @@
  */
 package vista;
 
+import controlador.SimulacionController;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -12,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
+    private SimulacionController controlador;
     private DefaultTableModel modeloEntidades;
     private DefaultTableModel modeloResumen;
     private DefaultTableModel modeloPorTipo;
@@ -31,6 +33,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         modeloEventos = new DefaultListModel<>();
         lstEventos.setModel(modeloEventos);
+    }
+
+    public void setControlador(SimulacionController controlador) {
+        this.controlador = controlador;
     }
 
     public void mostrarPantalla(String nombreCard) {
