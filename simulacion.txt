@@ -1,0 +1,127 @@
+CONFIG;SOLEADO;20
+ESTADO;4;2;21;33;42;6;0;4;38;42;38;2;false;true;Colapso del ecosistema: se extinguieron las plantas.
+PLANTA;Helecho-1;0.0;2;false;5
+PLANTA;Helecho-2;0.0;3;false;5
+PLANTA;Helecho-3;0.0;0;false;3
+PLANTA;Helecho-4;0.0;3;false;4
+PLANTA;Helecho-5;0.0;3;false;4
+PLANTA;Helecho-6;0.0;2;false;3
+PLANTA;Helecho-7;0.0;2;false;4
+PLANTA;Helecho-8;0.0;3;false;2
+PLANTA;Helecho-9;0.0;3;false;1
+VENENOSA;Cicuta-10;0.0;2;false;5
+PLANTA;Helecho-11;0.0;3;false;3
+VENENOSA;Cicuta-12;0.0;3;false;3
+PLANTA;Helecho-13;0.0;0;false;4
+PLANTA;Helecho-14;0.0;2;false;1
+PLANTA;Helecho-15;0.0;1;false;2
+PLANTA;Helecho-16;0.0;3;false;2
+PLANTA;Helecho-17;0.0;1;false;3
+PLANTA;Helecho-18;0.0;2;false;3
+PLANTA;Helecho-19;0.0;3;false;2
+PLANTA;Helecho-20;0.0;2;false;1
+PLANTA;Helecho-21;0.0;0;false;3
+PLANTA;Helecho-22;0.0;2;false;3
+PLANTA;Helecho-23;0.0;3;false;3
+PLANTA;Helecho-24;0.0;0;false;1
+VENENOSA;Cicuta-25;0.0;1;false;5
+PLANTA;Helecho-26;0.0;1;false;1
+PLANTA;Helecho-27;0.0;2;false;1
+PLANTA;Helecho-28;0.0;1;false;1
+PLANTA;Helecho-29;0.0;1;false;5
+VENENOSA;Cicuta-30;0.0;3;false;5
+PLANTA;Helecho-31;0.0;0;false;3
+PLANTA;Helecho-32;0.0;2;false;3
+PLANTA;Helecho-33;0.0;0;false;2
+PLANTA;Helecho-34;0.0;2;false;5
+PLANTA;Helecho-35;0.0;0;false;1
+VENENOSA;Cicuta-36;0.0;1;false;5
+PLANTA;Helecho-37;0.0;2;false;2
+PLANTA;Helecho-38;0.0;0;false;4
+PLANTA;Helecho-39;0.0;0;false;3
+PLANTA;Helecho-40;0.0;0;false;5
+PLANTA;Helecho-41;0.0;0;false;1
+PLANTA;Helecho-42;0.0;0;false;4
+CONEJO;Conejo-1;58.0;4;true
+CONEJO;Conejo-2;50.0;4;true
+CONEJO;Conejo-3;57.0;4;true
+CONEJO;Conejo-4;50.0;0;false
+CONEJO;Conejo-5;111.0;4;true
+CONEJO;Conejo-6;34.0;4;true
+CONEJO;Conejo-7;43.0;4;true
+CONEJO;Conejo-8;60.0;4;true
+CONEJO;Conejo-9;84.0;4;true
+CONEJO;Conejo-10;43.0;0;false
+CONEJO;Conejo-11;66.0;3;true
+CONEJO;Conejo-12;100.0;3;true
+CONEJO;Conejo-13;43.0;0;false
+CONEJO;Conejo-14;56.0;2;false
+CONEJO;Conejo-15;30.0;3;true
+CONEJO;Conejo-16;68.0;2;true
+CONEJO;Conejo-17;50.0;2;true
+CONEJO;Conejo-18;34.0;0;false
+CONEJO;Conejo-19;50.0;2;true
+CONEJO;Conejo-20;60.0;2;true
+CONEJO;Conejo-21;66.0;2;true
+CONEJO;Conejo-22;27.0;2;true
+CONEJO;Conejo-23;21.0;2;true
+CONEJO;Conejo-24;32.0;2;true
+CONEJO;Conejo-25;40.0;1;true
+CONEJO;Conejo-26;30.0;0;false
+CONEJO;Conejo-27;40.0;1;true
+CONEJO;Conejo-28;37.0;1;true
+CONEJO;Conejo-29;36.0;1;true
+CONEJO;Conejo-30;35.0;1;true
+CONEJO;Conejo-31;44.0;1;true
+CONEJO;Conejo-32;34.0;1;true
+CONEJO;Conejo-33;46.0;1;true
+CONEJO;Conejo-34;38.0;1;true
+CONEJO;Conejo-35;42.0;1;true
+CONEJO;Conejo-36;40.0;1;true
+CONEJO;Conejo-37;43.0;1;true
+CONEJO;Conejo-38;47.0;1;true
+LOBO;Lobo-1;144.0;4;true;3
+LOBO;Lobo-2;137.0;4;true;3
+HISTORIAL;1;26;8;2
+HISTORIAL;2;24;12;2
+HISTORIAL;3;14;20;2
+HISTORIAL;4;0;32;2
+EVENTO;Nació planta 'Helecho-41' (de 'Helecho-2')
+EVENTO;Nació planta 'Helecho-42' (de 'Helecho-37')
+EVENTO;Conejo 'Conejo-1' comió 'Helecho-19' (+20 energía)
+EVENTO;Conejo 'Conejo-1' tuvo una cría: 'Conejo-25'
+EVENTO;Conejo 'Conejo-2' comió 'Helecho-42' (+40 energía)
+EVENTO;Conejo 'Conejo-2' tuvo una cría: 'Conejo-26'
+EVENTO;Conejo 'Conejo-3' comió 'Helecho-9' (+10 energía)
+EVENTO;Conejo 'Conejo-3' tuvo una cría: 'Conejo-27'
+EVENTO;Conejo 'Conejo-5' comió 'Helecho-2' (+50 energía)
+EVENTO;Conejo 'Conejo-5' tuvo una cría: 'Conejo-28'
+EVENTO;Conejo 'Conejo-6' comió 'Cicuta-30' y era VENENOSA (-30 energía)
+EVENTO;Conejo 'Conejo-7' comió 'Cicuta-12' y era VENENOSA (-30 energía)
+EVENTO;Conejo 'Conejo-8' comió 'Helecho-16' (+20 energía)
+EVENTO;Conejo 'Conejo-8' tuvo una cría: 'Conejo-29'
+EVENTO;Conejo 'Conejo-9' comió 'Helecho-23' (+30 energía)
+EVENTO;Conejo 'Conejo-9' tuvo una cría: 'Conejo-30'
+EVENTO;Conejo 'Conejo-11' comió 'Helecho-11' (+30 energía)
+EVENTO;Conejo 'Conejo-11' tuvo una cría: 'Conejo-31'
+EVENTO;Conejo 'Conejo-12' comió 'Helecho-40' (+50 energía)
+EVENTO;Conejo 'Conejo-12' tuvo una cría: 'Conejo-32'
+EVENTO;Conejo 'Conejo-14' comió 'Helecho-37' (+20 energía)
+EVENTO;Conejo 'Conejo-14' tuvo una cría: 'Conejo-33'
+EVENTO;Conejo 'Conejo-15' comió 'Helecho-41' (+10 energía)
+EVENTO;Conejo 'Conejo-16' comió 'Helecho-34' (+50 energía)
+EVENTO;Conejo 'Conejo-16' tuvo una cría: 'Conejo-34'
+EVENTO;Conejo 'Conejo-17' comió 'Helecho-8' (+20 energía)
+EVENTO;Conejo 'Conejo-17' tuvo una cría: 'Conejo-35'
+EVENTO;Conejo 'Conejo-19' comió 'Helecho-32' (+30 energía)
+EVENTO;Conejo 'Conejo-19' tuvo una cría: 'Conejo-36'
+EVENTO;Conejo 'Conejo-20' comió 'Helecho-4' (+40 energía)
+EVENTO;Conejo 'Conejo-20' tuvo una cría: 'Conejo-37'
+EVENTO;Conejo 'Conejo-21' comió 'Helecho-5' (+40 energía)
+EVENTO;Conejo 'Conejo-21' tuvo una cría: 'Conejo-38'
+EVENTO;Conejo 'Conejo-22' no encontró comida (-15 energía)
+EVENTO;Conejo 'Conejo-23' no encontró comida (-15 energía)
+EVENTO;Conejo 'Conejo-24' no encontró comida (-15 energía)
+EVENTO;Lobo 'Lobo-1' cazó a Conejo 'Conejo-26' (+30 energía)
+EVENTO;Lobo 'Lobo-2' cazó a Conejo 'Conejo-14' (+30 energía)
+EVENTO;FIN DE LA SIMULACIÓN. Colapso del ecosistema: se extinguieron las plantas.

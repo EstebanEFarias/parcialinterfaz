@@ -222,6 +222,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        pnlContenedor.setPreferredSize(new java.awt.Dimension(1000, 620));
         pnlContenedor.setLayout(new java.awt.CardLayout());
 
         pnlConfig.setLayout(new java.awt.BorderLayout());
@@ -258,6 +259,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlFormulario.add(jLabel7);
 
         btnIniciar.setText("Iniciar simulación");
+        btnIniciar.addActionListener(this::btnIniciarActionPerformed);
         pnlFormulario.add(btnIniciar);
 
         pnlConfig.add(pnlFormulario, java.awt.BorderLayout.CENTER);
@@ -337,6 +339,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlIntervencion.add(cboClimaIntervencion);
 
         btnCambiarClima.setText("Cambiar clima");
+        btnCambiarClima.addActionListener(this::btnCambiarClimaActionPerformed);
         pnlIntervencion.add(btnCambiarClima);
 
         jLabel9.setText("Agregar:");
@@ -346,6 +349,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlIntervencion.add(cboTipoEntidad);
 
         btnAgregarEntidad.setText("Agregar entidad");
+        btnAgregarEntidad.addActionListener(this::btnAgregarEntidadActionPerformed);
         pnlIntervencion.add(btnAgregarEntidad);
 
         pnlAcciones.add(pnlIntervencion, java.awt.BorderLayout.CENTER);
@@ -353,9 +357,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlBotonesSim.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         btnVerReporte.setText("Ver reporte final");
+        btnVerReporte.addActionListener(this::btnVerReporteActionPerformed);
         pnlBotonesSim.add(btnVerReporte);
 
         btnAvanzar.setText("Avanzar turno");
+        btnAvanzar.addActionListener(this::btnAvanzarActionPerformed);
         pnlBotonesSim.add(btnAvanzar);
 
         pnlAcciones.add(pnlBotonesSim, java.awt.BorderLayout.SOUTH);
@@ -459,9 +465,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlBotonesReporte.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         btnVolver.setText("Volver a la simulación");
+        btnVolver.addActionListener(this::btnVolverActionPerformed);
         pnlBotonesReporte.add(btnVolver);
 
         btnNuevaSimulacion.setText("Nueva simulación");
+        btnNuevaSimulacion.addActionListener(this::btnNuevaSimulacionActionPerformed);
         pnlBotonesReporte.add(btnNuevaSimulacion);
 
         pnlReporte.add(pnlBotonesReporte, java.awt.BorderLayout.SOUTH);
@@ -476,9 +484,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuSimulacion.setText("Simulación");
 
         itemNueva.setText("Nueva simulación");
+        itemNueva.addActionListener(this::itemNuevaActionPerformed);
         menuSimulacion.add(itemNueva);
 
         itemSalir.setText("Salir");
+        itemSalir.addActionListener(this::itemSalirActionPerformed);
         menuSimulacion.add(itemSalir);
 
         jMenuBar1.add(menuSimulacion);
@@ -486,6 +496,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuReportes.setText("Reportes");
 
         itemVerReporte.setText("Ver reporte final");
+        itemVerReporte.addActionListener(this::itemVerReporteActionPerformed);
         menuReportes.add(itemVerReporte);
 
         jMenuBar1.add(menuReportes);
@@ -494,6 +505,42 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        controlador.iniciarSimulacion(txtPlantas.getText(), txtConejos.getText(), txtLobos.getText(), (String) cboClimaInicial.getSelectedItem(), txtTurnos.getText());  // TODO add your handling code here:
+    }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        controlador.volverASimulacion();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnNuevaSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaSimulacionActionPerformed
+        controlador.nuevaSimulacion();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNuevaSimulacionActionPerformed
+
+    private void itemNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNuevaActionPerformed
+        controlador.nuevaSimulacion();
+    }//GEN-LAST:event_itemNuevaActionPerformed
+
+    private void itemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_itemSalirActionPerformed
+
+    private void itemVerReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVerReporteActionPerformed
+        controlador.verReporte();
+    }//GEN-LAST:event_itemVerReporteActionPerformed
+
+    private void btnAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvanzarActionPerformed
+        controlador.avanzarTurno();    }//GEN-LAST:event_btnAvanzarActionPerformed
+
+    private void btnCambiarClimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarClimaActionPerformed
+        controlador.cambiarClima((String) cboClimaIntervencion.getSelectedItem());    }//GEN-LAST:event_btnCambiarClimaActionPerformed
+
+    private void btnAgregarEntidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEntidadActionPerformed
+        controlador.agregarEntidad((String) cboTipoEntidad.getSelectedItem());    }//GEN-LAST:event_btnAgregarEntidadActionPerformed
+
+    private void btnVerReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerReporteActionPerformed
+        controlador.verReporte();    }//GEN-LAST:event_btnVerReporteActionPerformed
 
     /**
      * @param args the command line arguments
