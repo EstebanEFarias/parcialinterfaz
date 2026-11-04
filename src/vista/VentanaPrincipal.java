@@ -45,6 +45,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         btnIniciar = new javax.swing.JButton();
         pnlSimulacion = new javax.swing.JPanel();
+        pnlContadores = new javax.swing.JPanel();
+        lblTurno = new javax.swing.JLabel();
+        lblClima = new javax.swing.JLabel();
+        lblPlantas = new javax.swing.JLabel();
+        lblConejos = new javax.swing.JLabel();
+        lblLobos = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEntidades = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstEventos = new javax.swing.JList<>();
+        pnlAcciones = new javax.swing.JPanel();
+        lblIntervencion = new javax.swing.JLabel();
+        pnlIntervencion = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        cboClimaIntervencion = new javax.swing.JComboBox<>();
+        btnCambiarClima = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        cboTipoEntidad = new javax.swing.JComboBox<>();
+        btnAgregarEntidad = new javax.swing.JButton();
+        pnlBotonesSim = new javax.swing.JPanel();
+        btnVerReporte = new javax.swing.JButton();
+        btnAvanzar = new javax.swing.JButton();
         pnlReporte = new javax.swing.JPanel();
         lblEstado = new javax.swing.JLabel();
 
@@ -92,16 +114,103 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlContenedor.add(pnlConfig, "config");
 
-        javax.swing.GroupLayout pnlSimulacionLayout = new javax.swing.GroupLayout(pnlSimulacion);
-        pnlSimulacion.setLayout(pnlSimulacionLayout);
-        pnlSimulacionLayout.setHorizontalGroup(
-            pnlSimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 814, Short.MAX_VALUE)
-        );
-        pnlSimulacionLayout.setVerticalGroup(
-            pnlSimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
-        );
+        pnlSimulacion.setLayout(new java.awt.BorderLayout());
+
+        pnlContadores.setLayout(new java.awt.GridLayout(1, 5, 10, 0));
+
+        lblTurno.setText("Turno: -");
+        pnlContadores.add(lblTurno);
+
+        lblClima.setText("Clima: -");
+        pnlContadores.add(lblClima);
+
+        lblPlantas.setText("Plantas: -");
+        pnlContadores.add(lblPlantas);
+
+        lblConejos.setText("Conejos: -");
+        pnlContadores.add(lblConejos);
+
+        lblLobos.setText("Lobos: -");
+        pnlContadores.add(lblLobos);
+
+        pnlSimulacion.add(pnlContadores, java.awt.BorderLayout.NORTH);
+
+        tblEntidades.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Tipo", "Nombre", "Energia", "Edad", "Detalle"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblEntidades);
+
+        pnlSimulacion.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(350, 30));
+
+        lstEventos.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(lstEventos);
+
+        pnlSimulacion.add(jScrollPane2, java.awt.BorderLayout.EAST);
+
+        pnlAcciones.setLayout(new java.awt.BorderLayout());
+
+        lblIntervencion.setText("Próxima intervención: turno 3.");
+        pnlAcciones.add(lblIntervencion, java.awt.BorderLayout.NORTH);
+
+        pnlIntervencion.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        jLabel8.setText("Clima:");
+        pnlIntervencion.add(jLabel8);
+
+        cboClimaIntervencion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLEADO", "LLUVIOSO", "SEQUIA", "INVIERNO" }));
+        pnlIntervencion.add(cboClimaIntervencion);
+
+        btnCambiarClima.setText("Cambiar clima");
+        pnlIntervencion.add(btnCambiarClima);
+
+        jLabel9.setText("Agregar:");
+        pnlIntervencion.add(jLabel9);
+
+        cboTipoEntidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Planta", "Conejo", "Lobo" }));
+        pnlIntervencion.add(cboTipoEntidad);
+
+        btnAgregarEntidad.setText("Agregar entidad");
+        pnlIntervencion.add(btnAgregarEntidad);
+
+        pnlAcciones.add(pnlIntervencion, java.awt.BorderLayout.CENTER);
+
+        pnlBotonesSim.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+
+        btnVerReporte.setText("Ver reporte final");
+        pnlBotonesSim.add(btnVerReporte);
+
+        btnAvanzar.setText("Avanzar turno");
+        pnlBotonesSim.add(btnAvanzar);
+
+        pnlAcciones.add(pnlBotonesSim, java.awt.BorderLayout.SOUTH);
+
+        pnlSimulacion.add(pnlAcciones, java.awt.BorderLayout.SOUTH);
 
         pnlContenedor.add(pnlSimulacion, "simulacion");
 
@@ -152,8 +261,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarEntidad;
+    private javax.swing.JButton btnAvanzar;
+    private javax.swing.JButton btnCambiarClima;
     private javax.swing.JButton btnIniciar;
+    private javax.swing.JButton btnVerReporte;
     private javax.swing.JComboBox<String> cboClimaInicial;
+    private javax.swing.JComboBox<String> cboClimaIntervencion;
+    private javax.swing.JComboBox<String> cboTipoEntidad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -161,12 +276,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblClima;
+    private javax.swing.JLabel lblConejos;
     private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblIntervencion;
+    private javax.swing.JLabel lblLobos;
+    private javax.swing.JLabel lblPlantas;
+    private javax.swing.JLabel lblTurno;
+    private javax.swing.JList<String> lstEventos;
+    private javax.swing.JPanel pnlAcciones;
+    private javax.swing.JPanel pnlBotonesSim;
     private javax.swing.JPanel pnlConfig;
+    private javax.swing.JPanel pnlContadores;
     private javax.swing.JPanel pnlContenedor;
     private javax.swing.JPanel pnlFormulario;
+    private javax.swing.JPanel pnlIntervencion;
     private javax.swing.JPanel pnlReporte;
     private javax.swing.JPanel pnlSimulacion;
+    private javax.swing.JTable tblEntidades;
     private javax.swing.JTextField txtConejos;
     private javax.swing.JTextField txtLobos;
     private javax.swing.JTextField txtPlantas;
