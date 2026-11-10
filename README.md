@@ -9,5 +9,5 @@ La simulación se guarda sola en `simulacion.txt`, dentro de la carpeta del proy
 
 
 Figma: https://www.figma.com/design/kyKh00aXz2T34bT7NLuUhz/Sin-t%C3%ADtulo?node-id=0-1&t=mfhUsb9BNR5xB2bD-1
-Videos: https://drive.google.com/drive/folders/12OzDbgfQAe_7XjDedJ5nZ5UouGMjrjoT?usp=drive_link
+Videos: https://drive.google.com/file/d/10d0JnwygJaC_vHVp6Rk7ShVITos4V885/view?usp=sharing
 Prompts: https://docs.google.com/document/d/1-CKK1r8ih-Y8xS9tt5vMs3y96q_uoku6/edit?usp=drive_link&ouid=113870661437654219630&rtpof=true&sd=true
